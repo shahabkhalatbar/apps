@@ -25,6 +25,7 @@
 /** @var $theme OC_Defaults */
 
 $lastDate = null;
+$time = time();
 foreach ($_['activity'] as $event) {
 	$currentDate = strip_time($event['timestamp']);
 	if ($currentDate !== $lastDate){
@@ -36,7 +37,7 @@ foreach ($_['activity'] as $event) {
 		}
 		$lastDate = $currentDate;
 		echo('<div class="group" data-date="' . $currentDate . '">');
-		echo('<div class="groupheader"><span class="tooltip" title="' . \OCP\Util::formatDate($currentDate, true) .'">' . ucfirst(\OCP\relative_modified_date($currentDate, true)) . '</span></div>');
+		echo('<div class="groupheader"><span class="tooltip" title="' . \OCP\Util::formatDate($currentDate, true) .'">' . ucfirst(\OCP\relative_modified_date($currentDate, $time, true)) . '</span></div>');
 		echo('<div class="boxcontainer">');
 	}
 	\OCA\Activity\Data::show($event);
